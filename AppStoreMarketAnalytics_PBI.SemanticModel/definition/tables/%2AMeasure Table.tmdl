@@ -1,0 +1,75 @@
+table '*Measure Table'
+	lineageTag: eb325e44-5cd3-4089-8dd5-eb2f377abd55
+
+	measure 'M_Avg Rating' = AVERAGE('fact'[Average User Rating])
+		lineageTag: 3ee0308a-8a69-46d4-a175-33650df6202f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_User = sum('fact'[User Rating Count])
+		formatString: 0
+		lineageTag: 36cf9d7b-353b-42cc-a2e4-702a6363fce0
+
+	measure 'M_Total Genre' = DISTINCTCOUNT('fact'[Primary Genre])
+		formatString: 0
+		lineageTag: 151c8e5a-0080-4795-9ad8-2f3b63ef42df
+
+	measure M_Language = DISTINCTCOUNT('fact'[Language])
+		formatString: 0
+		lineageTag: f4b4291c-05ba-4d80-b13d-5b5c044e2ca0
+
+	measure 'M_Total App' = DISTINCTCOUNT('fact'[App ID])
+		formatString: 0
+		lineageTag: ba53b278-423c-4216-b97b-b383c3175a8f
+
+	measure 'M_Engament Rate' = DIVIDE(SUMX('fact', 'fact'[Average User Rating] * 'fact'[User Rating Count]),[M_User],0)
+		lineageTag: 304a3bb1-674e-4a0c-a8e6-98df3f3a40e1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_User_Bar = sum('fact'[User Rating Count])
+		formatString: 0
+		lineageTag: ab45c5ee-caaa-4eea-aa27-8804c7fa83b6
+
+	measure M_Developer = DISTINCTCOUNT('fact'[Developer])
+		formatString: 0
+		lineageTag: 019be980-6815-4394-83c8-d7bdf6065ce1
+
+	measure M_Value = sumx('fact','fact'[Price per App (USD)]*'fact'[User Rating Count])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 9a60cdfd-0b70-4f4e-a367-fa5825ed5653
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'M_Adoption Rate' = DIVIDE([M_User],CALCULATE(SUM('fact'[User Rating Count]), ALL('fact')),0)
+		lineageTag: e2e6965b-b8e3-4a7e-a65f-aa4ad88d2a26
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'M_Market Share' = DIVIDE([M_Value],CALCULATE(SUMx('fact','fact'[Price per App (USD)]*'fact'[User Rating Count]), ALL('fact')),0)
+		lineageTag: 3d6ca2d8-5716-4ffc-a3cc-877d72113dbb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'M_User contribution' = DIVIDE([M_User],CALCULATE(SUM('fact'[User Rating Count]), ALL('fact')),0)
+		lineageTag: b723e7b8-5af2-4151-8e5e-5af308b7f308
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		formatString: 0
+		lineageTag: 708ced85-6c2a-4a97-a38b-284261bf929b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '*Measure Table' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 676e0873cd0b4ba6a1f93c0fec642776
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

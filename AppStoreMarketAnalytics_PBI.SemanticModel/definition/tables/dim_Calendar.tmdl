@@ -1,0 +1,135 @@
+table dim_Calendar
+	lineageTag: 7f2a5544-bc31-434a-90be-cce1b410fa67
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bfca94b7-c684-43f8-a511-35256a2f30a5
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 18d265d3-9538-43c6-89b8-f5fff1640776
+			defaultHierarchy: LocalDateTable_f435c4cd-c094-47f5-b5c2-968f7202e6e2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 66919d0b-af34-45c2-96eb-1c3d6763ceda
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: ab459389-d451-4b1e-b33d-f89e5ef66bab
+		summarizeBy: sum
+		sourceColumn: Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 12c465fa-eb54-4923-8c2b-dd4db5c6829b
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Year'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f84a5752-ddf9-4135-9543-3e2e74a73cdc
+		summarizeBy: none
+		sourceColumn: Month Year
+
+		variation Variation
+			isDefault
+			relationship: 70e4ff4e-8ae1-4f51-9686-73ecc843579b
+			defaultHierarchy: LocalDateTable_026c2cf8-a685-4e04-b3de-fc1942084f00.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: dd794676-6c90-4b8b-a821-c5a7adf0649a
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: 42833e04-aeea-48fe-b08f-2ec8e7c32d02
+		summarizeBy: none
+		sourceColumn: Day Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Abrev'
+		dataType: string
+		lineageTag: be960982-b571-439b-8a95-637e9aaf2da9
+		summarizeBy: none
+		sourceColumn: Day Abrev
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Year Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7be43b9c-0ca6-4b54-b9cb-1b716eeb9479
+		summarizeBy: sum
+		sourceColumn: Month Year Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start of Month'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a3db9fa3-9cdf-443d-92db-0acdcdce4039
+		summarizeBy: none
+		sourceColumn: Start of Month
+
+		variation Variation
+			isDefault
+			relationship: 7f948b33-f593-4457-9b7a-41aa654cee25
+			defaultHierarchy: LocalDateTable_157ff018-b075-4f6d-a5cd-2ce96c291831.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Kind of Day'
+		dataType: string
+		lineageTag: 9f898d0a-fdc6-467a-be74-2a63d1b1a907
+		summarizeBy: none
+		sourceColumn: Kind of Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column M
+		dataType: string
+		lineageTag: 20788da9-3de8-4873-a4ac-1f6536fee3f1
+		summarizeBy: none
+		sourceColumn: M
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_Calendar = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Maz_MDA\1. Capstone 1\AppStore\Data_set\dim_Calendar.csv"),[Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type datetime}, {"Year", Int64.Type}, {"Month Number", Int64.Type}, {"Month Name", type text}, {"Month Year", type date}, {"Day", Int64.Type}, {"Day Name", type text}, {"Day Abrev", type text}, {"Month Year Order", Int64.Type}, {"Start of Month", type datetime}, {"Kind of Day", type text}, {"M", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

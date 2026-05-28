@@ -1,0 +1,128 @@
+table '*MoM Measure'
+	lineageTag: 875ca3bc-9680-4fa5-8a89-c27c616e17e9
+
+	measure 'MoM_Avg Rating' = MoM_Icon([M_Avg Rating])
+		lineageTag: 4ebf6e7e-0d40-40ae-af12-2f87000f6ad0
+
+	measure 'MoM_Avg Rating_Color' = Delta_Color('*MoM Measure'[MoM_Avg Rating])
+		lineageTag: 462df8f1-dcc5-4136-88de-1966e96498f8
+
+	measure 'YoY_Avg Rating' = YoY_Icon('*Measure Table'[M_Avg Rating])
+		lineageTag: 2934084f-6dba-46f2-8010-c0992f8fccb9
+
+	measure 'YoY_Avg Rating_Color' = Delta_Color('*MoM Measure'[YoY_Avg Rating])
+		lineageTag: 3dea43e6-a737-49b1-a831-1667c2dd9078
+
+	measure MoM_User = MoM_Icon('*Measure Table'[M_User])
+		lineageTag: c9c153dc-840d-4cca-9d79-924a0d4cf9aa
+
+	measure YoY_Engagement = YoY_Icon('*Measure Table'[M_User])
+		lineageTag: 65d13bed-6f9f-498e-9731-991965391cfd
+
+	measure MoM_User_Color = Delta_Color('*MoM Measure'[MoM_User])
+		lineageTag: 9d247a7e-41d2-4b22-94e3-b5288e3faf2f
+
+	measure YoY_Engagement_Color = Delta_Color([YoY_Engagement])
+		lineageTag: 777defc5-3186-4141-8007-e606f01b1920
+
+	measure MoM_Genre = MoM_Icon('*Measure Table'[M_Total Genre])
+		lineageTag: e6a86042-1a34-44dd-af03-0cf55648c0a7
+
+	measure MoM_Genre_Color = Delta_Color('*MoM Measure'[MoM_Genre])
+		lineageTag: 100e3b70-3b51-49f0-ab55-24d6d9a28e7e
+
+	measure YoY_Genre = YoY_Icon('*Measure Table'[M_Total Genre])
+		lineageTag: dd6b6698-9379-4869-8f9f-04ed04cebcb2
+
+	measure YoY_Genre_Color = Delta_Color('*MoM Measure'[YoY_Genre])
+		lineageTag: dd78a9c8-9505-4cfe-95a4-473244f9071a
+
+	measure MoM_language = MoM_Icon([M_Language])
+		lineageTag: 1582b102-85e4-4ea5-9ad3-2a68a4b5736f
+
+	measure YoY_Language = YoY_Icon([M_Language])
+		lineageTag: d9f62fb2-bd81-4bef-93a3-6c01d83244ee
+
+	measure MoM_Language_Color = Delta_Color('*MoM Measure'[MoM_language])
+		lineageTag: 53bf0b0c-555f-4352-b984-617e7b3a3853
+
+	measure YoY_Language_Color = Delta_Color([YoY_Language])
+		lineageTag: e947dea1-b226-4c43-be2c-a4987fdb2f28
+
+	measure MoM_App = MoM_Icon([M_Total App])
+		lineageTag: 9cea3210-0260-4988-b54e-2d1e7e6a4db7
+
+	measure MoM_App_Color = Delta_Color([MoM_App])
+		lineageTag: 0bf5a2de-7aa3-4702-8210-3158bcc395e9
+
+	measure YoY_App = YoY_Icon([M_Total App])
+		lineageTag: 7540509f-2e9b-4be2-ac21-c62622c30d59
+
+	measure YoY_App_Color = Delta_Color([YoY_App])
+		lineageTag: 24fb6a8d-c983-4978-9af7-b9f0da81d2fb
+
+	measure MoM_Developer = MoM_Icon('*Measure Table'[M_Developer])
+		lineageTag: 9aab0009-e364-41d8-b448-76d0c74cba73
+
+	measure YoY_Developer = YoY_Icon([M_Developer])
+		lineageTag: 672934de-03d2-48a3-9833-ad251b6369c7
+
+	measure MoM_Developer_Color = Delta_Color([MoM_Developer])
+		lineageTag: 63974574-1c20-4eab-8060-9434c3b61c79
+
+	measure YoY_Developer_Color = Delta_Color([YoY_Developer])
+		lineageTag: 158436af-94c6-42d9-b90a-59a10f848ae9
+
+	measure MoM_Value = MoM_Icon([M_Value])
+		lineageTag: 3a1ed3f1-aecf-47bc-981c-e2333d5edbf0
+
+	measure MoM_Value_Color = Delta_Color([MoM_Value])
+		lineageTag: 98406d35-1421-4763-bd9a-93a3824b34fd
+
+	measure YoY_Value = YoY_Icon([M_Value])
+		lineageTag: aba70042-361f-4e0e-beb0-78358f0ea9fa
+
+	measure YoY_value_Color = Delta_Color([YoY_Value])
+		lineageTag: 9257fa2b-68aa-49d1-b580-c59a2f983d50
+
+	measure 'MoM_Adoption Rate' = MoM_Icon([M_Adoption Rate])
+		lineageTag: f1447af8-1538-4324-baf1-bc3a06a8c80f
+
+	measure 'MoM_Adoption Rate_Color' = Delta_Color([MoM_Adoption Rate])
+		lineageTag: 095fc917-61d5-4068-9011-9834d7d2fce3
+
+	measure 'YoY_Adoption Rate' = YoY_Icon([M_Adoption Rate])
+		lineageTag: 3d3d75ff-6dfd-4d00-a8fa-46bfb39f8fd3
+
+	measure 'YoY_Adoption Rate_Color' = Delta_Color([YoY_Adoption Rate])
+		lineageTag: a0b5d895-957e-4797-a243-ab2b149830a3
+
+	measure 'MoM_Market Share' = MoM_Icon([M_Market Share])
+		lineageTag: dd38c1a3-063d-4c63-8459-af88bfe04063
+
+	measure 'MoM_Market Share_Color' = Delta_Color([MoM_Market Share])
+		lineageTag: 208e73f0-bb61-4625-aa8e-e821f6cec6e8
+
+	measure 'YoY_Market Share' = YoY_Icon([M_Market Share])
+		lineageTag: 85cdf5b0-e380-4510-980d-63e6f0810b1e
+
+	measure 'YoY_Market Share_Color' = Delta_Color([YoY_Market Share])
+		lineageTag: 9cefc130-607b-483b-bb8d-554efec043cc
+
+	column Column
+		formatString: 0
+		lineageTag: 297c376b-22ae-455d-a25f-4549832da631
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '*MoM Measure' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = caa7fd4f05a940419b5a66499fc8ad4c
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

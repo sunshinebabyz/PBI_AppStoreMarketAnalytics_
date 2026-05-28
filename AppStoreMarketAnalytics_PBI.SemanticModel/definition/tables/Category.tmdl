@@ -1,0 +1,48 @@
+table Category
+	lineageTag: d2db2ff9-feb1-402a-9ade-d35221cab961
+
+	column Category
+		lineageTag: 35de5403-9954-4d24-9a1c-17278d7cc4a8
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Category Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Category Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Fields'
+		isHidden
+		lineageTag: b995a6b7-aa88-4a0d-b329-4d2e427ac96b
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Category Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Order'
+		isHidden
+		formatString: 0
+		lineageTag: 28b55f9a-5431-4644-826c-82b3e8ac8ebc
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Category = calculated
+		mode: import
+		source =
+				{
+				    ("Primary Genre", NAMEOF('dim_PrimaryGenre'[Primary Genre]), 0),
+				    ("App Size", NAMEOF('dim_size'[App Size Tagging]), 1)
+				}
+
+	annotation PBI_Id = 803d63ee87274096ab7263c24c172bd1
+

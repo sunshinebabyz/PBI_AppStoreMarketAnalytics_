@@ -1,0 +1,36 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["dim_AgeRating","dim_Calendar","dim_Language","dim_Price","dim_PrimaryGenre","dim_RatingAverage","dim_RatingCount","dim_size","fact"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_AgeRating
+ref table dim_Calendar
+ref table DateTableTemplate_fc543569-401e-441c-aa92-80630ee2bc7e
+ref table LocalDateTable_f435c4cd-c094-47f5-b5c2-968f7202e6e2
+ref table LocalDateTable_026c2cf8-a685-4e04-b3de-fc1942084f00
+ref table LocalDateTable_157ff018-b075-4f6d-a5cd-2ce96c291831
+ref table dim_Language
+ref table dim_Price
+ref table dim_PrimaryGenre
+ref table dim_size
+ref table dim_RatingAverage
+ref table fact
+ref table dim_RatingCount
+ref table '*MoM Measure'
+ref table '*Measure Table'
+ref table Engage_KPI
+ref table Category
+ref table Performance_KPI
+ref table KPI_Date
+
+ref cultureInfo en-US
+

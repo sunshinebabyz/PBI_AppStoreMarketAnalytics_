@@ -1,0 +1,73 @@
+table dim_AgeRating
+	lineageTag: ac9859fa-28c7-4b0a-a056-37f50bfe6a4c
+
+	column 'Age Group'
+		dataType: string
+		lineageTag: 4777fe46-38fc-411f-becb-55beb067d47a
+		summarizeBy: none
+		sourceColumn: Age Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Group Sort'
+		dataType: int64
+		formatString: 0
+		lineageTag: 163b39ce-4a26-4afb-a24a-219309ec6c02
+		summarizeBy: none
+		sourceColumn: Age Group Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Rating'
+		dataType: int64
+		formatString: 0
+		lineageTag: 176754d2-78e1-43ef-ac3c-2328fab5cb79
+		summarizeBy: none
+		sourceColumn: Age Rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Minimum Age'
+		dataType: int64
+		formatString: 0
+		lineageTag: a9d4cc6d-61c0-47e2-b25a-e370222fabe7
+		summarizeBy: none
+		sourceColumn: Minimum Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		dataType: int64
+		formatString: 0
+		lineageTag: c2d80da3-115c-409c-9cc0-6a044619f6c3
+		summarizeBy: none
+		sourceColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Group New'
+		dataType: string
+		lineageTag: a88dcfcf-20f9-4f43-ae80-228b3f98035b
+		summarizeBy: none
+		sourceColumn: Age Group New
+		sortByColumn: Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_AgeRating = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Maz_MDA\1. Capstone 1\AppStore\Data_set\dim_AgeRating.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Age Group", type text}, {"Age Group Sort", Int64.Type}, {"Age Rating", Int64.Type}, {"Minimum Age", Int64.Type}, {"Sort", Int64.Type}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Age Group New", each [Age Group] & " - " & Text.From([Age Rating]))
+				in
+				    #"Added Custom"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,47 @@
+relationship 18d265d3-9538-43c6-89b8-f5fff1640776
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_Calendar.Date
+	toColumn: LocalDateTable_f435c4cd-c094-47f5-b5c2-968f7202e6e2.Date
+
+relationship 70e4ff4e-8ae1-4f51-9686-73ecc843579b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_Calendar.'Month Year'
+	toColumn: LocalDateTable_026c2cf8-a685-4e04-b3de-fc1942084f00.Date
+
+relationship 7f948b33-f593-4457-9b7a-41aa654cee25
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_Calendar.'Start of Month'
+	toColumn: LocalDateTable_157ff018-b075-4f6d-a5cd-2ce96c291831.Date
+
+relationship AutoDetected_8ee7f040-b43d-4ad3-a98e-710b6c80f97d
+	fromColumn: fact.'Age Rating'
+	toColumn: dim_AgeRating.'Age Rating'
+
+relationship AutoDetected_5ab4dcc7-047c-4047-87f5-e1fcb2697a36
+	fromColumn: fact.'Price per App (USD)'
+	toColumn: dim_Price.'Price per App (USD)'
+
+relationship AutoDetected_72284092-d54e-4289-8081-8ff84e277b06
+	fromColumn: fact.'Primary Genre'
+	toColumn: dim_PrimaryGenre.'Primary Genre'
+
+relationship AutoDetected_96ca742d-a254-4515-af52-9bb1f13de52e
+	fromColumn: fact.'App Size (mb)'
+	toColumn: dim_size.'App Size (mb)'
+
+relationship AutoDetected_71402030-581a-4d18-a1c2-90a017d70a3d
+	fromColumn: fact.'Average User Rating'
+	toColumn: dim_RatingAverage.'Average User Rating'
+
+relationship AutoDetected_2cecb002-101d-4364-b858-c3b88f6fabc9
+	fromColumn: fact.'User Rating Count'
+	toColumn: dim_RatingCount.'User Rating Count'
+
+relationship c34f53ca-e1a2-d32f-aceb-9e62ad87437e
+	fromColumn: fact.'Release Date'
+	toColumn: dim_Calendar.Date
+
+relationship 292dfeb1-9146-1889-7704-bfb45edda094
+	fromColumn: fact.Language
+	toColumn: dim_Language.'Language Acronym'
+
